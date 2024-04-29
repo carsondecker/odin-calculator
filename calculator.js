@@ -4,10 +4,13 @@ let currentOperator = "";
 let preview = "";
 let display = "";
 
+const previewDiv = document.querySelector("#preview");
+const displayDiv = document.querySelector("#display");
+
 // When a digit is clicked
 const digit = (num) => {
     if (preview.includes("="))
-        clear();    
+        clr();    
     if (currentOperator == "") {
         lhs += num;
         updateDisplay(lhs);
@@ -28,10 +31,15 @@ const decimal = () => {
 
 // When an operator is clicked
 const operator = (op) => { 
-    if (operator != "" && rhs != "" && !preview.includes("="))
+    if (lhs == "")
+        return;
+    
+    if (currentOperator != "" && rhs != "" && !preview.includes("=")) {
         operate();
+    }
     currentOperator = op;
     updatePreview(lhs + " " + currentOperator);
+    updateDisplay("");
     rhs = "";
 }
 
@@ -40,26 +48,33 @@ const operate = () => {
     switch(currentOperator) {
         case "+":
             lhs = parseFloat(lhs) + parseFloat(rhs);
+            updateDisplay(lhs);
             break;
         case "-":
             lhs = parseFloat(lhs) - parseFloat(rhs);
+            updateDisplay(lhs);
             break;
         case "*":
             lhs = parseFloat(lhs) * parseFloat(rhs);
+            updateDisplay(lhs);
             break;
         case "/":
             if (rhs == 0) {
                 window.alert('bruh');
-                clear();
+                clr();
             }
-            else
+            else {
                 lhs = parseFloat(lhs) / parseFloat(rhs);
+                updateDisplay(lhs);
+            }
             break;
     }
 }
 
 // When equals is clicked
 const equals = () => {
+    if (lhs == "" || rhs == "")
+        return;
     updatePreview(lhs + " " + currentOperator + " " + rhs + " =");
     operate();
 }
@@ -67,19 +82,19 @@ const equals = () => {
 // When backspace is clicked
 const backspace = () => {
     if (preview.includes("="))
-        clear();
+        clr();
     else if (currentOperator == "") {
-        lhs.slice(0, -1);
+        lhs = lhs.slice(0, -1);
         updateDisplay(lhs);
     }
     else {
-        rhs.slice(0, -1);
+        rhs = rhs.slice(0, -1);
         updateDisplay(rhs);
     }   
 }
 
 // When clear is clicked
-const clear = () => {
+const clr = () => {
     lhs = "";
     rhs = "";
     currentOperator = "";
@@ -90,41 +105,11 @@ const clear = () => {
 // Updates the display
 const updateDisplay = (s) => {
     display = s;
+    displayDiv.textContent = display;
 }
 
-// Updates the display
+// Updates the preview
 const updatePreview = (s) => {
     preview = s;
+    previewDiv.textContent = preview;
 }
-
-//Test case
-/*
-digit(3);
-digit(0);
-operator("+");
-console.log(preview);
-digit(1);
-digit(5);
-equals();
-console.log(preview);
-console.log(lhs);
-equals();
-console.log(preview);
-console.log(lhs);
-operator("-");
-console.log(preview);
-digit(3);
-decimal();
-digit(5);
-operator("-");
-console.log(preview);
-digit(3);
-decimal();
-digit(5);
-equals();
-console.log(preview);
-console.log(lhs);
-equals();
-console.log(preview);
-console.log(lhs);
-*/
