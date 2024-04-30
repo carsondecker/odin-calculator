@@ -7,6 +7,8 @@ let display = "";
 const previewDiv = document.querySelector("#preview");
 const displayDiv = document.querySelector("#display");
 
+// ---------------NEED TO PREVENT BIG NUMBERS IN ANSWER AND INPUTS----------------//
+
 // When a digit is clicked
 const digit = (num) => {
     if (preview.includes("="))

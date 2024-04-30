@@ -53,6 +53,8 @@ button {
     font-weight: bold;
     height: 50px;
     margin: 5px;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 #left-buttons {
