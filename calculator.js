@@ -140,3 +140,24 @@ const limitLength = (num) => {
     }
     return num;
 }
+
+// Keyboard support
+function handleKeyboardInput(e) {
+    const key = e.key;
+
+    if (!isNaN(key))
+        digit(key);
+    else if (key == ".")
+        decimal();
+    else if (key == "+" || key == "-" || key == "*" || key == "/")
+        operator(key);
+    else if (key == "Enter" || key == "=") {
+        equals();
+    }
+    else if (key == "c")
+        clr();
+    else if (key == "Backspace")
+        backspace();
+}
+
+document.addEventListener('keydown', handleKeyboardInput);
