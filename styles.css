@@ -1,0 +1,98 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: indigo;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 360px;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: black;
+    background-color: rgb(37, 37, 37);
+    filter: drop-shadow(5px 5px 5px black);
+}
+
+#screen {
+    margin: 30px;
+    padding: 15px 25px;
+    background-color: rgb(88, 88, 88);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 0 0 100%;
+}
+
+#preview {
+    height: 30px;
+    text-align: right;
+    font-size: 30px;
+}
+
+#display {
+    height: 60px;
+    text-align: right;
+    font-size: 60px;
+}
+
+#buttons {
+    margin: 30px;
+    margin-top: 0px;
+    display: flex;
+}
+
+button {
+    font-size: 30px;
+    font-weight: bold;
+    height: 50px;
+    margin: 5px;
+}
+
+#left-buttons {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+}
+
+#operator-buttons {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#delete-buttons {
+    display: flex;
+}
+
+.row {
+    display: flex;
+}
+
+.num {
+    flex-grow: 1;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.num.zero {
+    flex-grow: 2.65;
+}
+
+#clear {
+    flex-grow: 3;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#back {
+    flex-grow: .6;
+    font-size: 30px;
+    font-weight: bold;
+}

@@ -15,32 +15,41 @@
             <div id="display"></div>
         </div>
         <div id="buttons">
-            <div class="delete-buttons">
-                <button id="clear" onclick="clr()" class="material-symbols-outlined">delete</button>
-                <button id="back" onclick="backspace()" class="material-symbols-outlined">backspace</button>
+            <div id="left-buttons">
+                <div id="delete-buttons">
+                    <button id="clear" class="del material-symbols-outlined" onclick="clr()">delete</button>
+                    <button id="back" class="del material-symbols-outlined" onclick="backspace()">backspace</button>
+                </div>
+                <div id="number-buttons">
+                    <div class="row">
+                        <button id="7" class="num" onclick="digit(7)">7</button>
+                        <button id="8" class="num" onclick="digit(8)">8</button>
+                        <button id="9" class="num" onclick="digit(9)">9</button>
+                    </div>
+                    <div class="row">
+                        <button id="4" class="num" onclick="digit(4)">4</button>
+                        <button id="5" class="num" onclick="digit(5)">5</button>
+                        <button id="6" class="num" onclick="digit(6)">6</button>
+                    </div>
+                    <div class="row">
+                        <button id="1" class="num" onclick="digit(1)">1</button>
+                        <button id="2" class="num" onclick="digit(2)">2</button>
+                        <button id="3" class="num" onclick="digit(3)">3</button>
+                    </div>
+                    <div class="row">
+                        <button id="0" class="num zero" onclick="digit(0)">0</button>
+                        <button id="." class="num" onclick="decimal()">.</button>
+                    </div>
+                </div>
             </div>
-            <div class="number-buttons">
-                <button id="7" onclick="digit(7)">7</button>
-                <button id="8" onclick="digit(8)">8</button>
-                <button id="9" onclick="digit(9)">9</button>
-                <button id="4" onclick="digit(4)">4</button>
-                <button id="5" onclick="digit(5)">5</button>
-                <button id="6" onclick="digit(6)">6</button>
-                <button id="1" onclick="digit(1)">1</button>
-                <button id="2" onclick="digit(2)">2</button>
-                <button id="3" onclick="digit(3)">3</button>
+            <div id="operator-buttons">
+                <button id="+" class="op" onclick="operator('+')">+</button>
+                <button id="-" class="op" onclick="operator('-')">-</button>
+                <button id="*" class="op" onclick="operator('*')">*</button>
+                <button id="/" class="op" onclick="operator('/')">/</button>
+                <button id="=" class="equals" onclick="equals()">=</button>
             </div>
-            <div class="operator-buttons">
-                <button id="+" onclick="operator('+')">+</button>
-                <button id="-" onclick="operator('-')">-</button>
-                <button id="*" onclick="operator('*')">*</button>
-                <button id="/" onclick="operator('/')">/</button>
-            </div>
-            <div class="bottom-buttons">
-                <button id="." onclick="decimal()">.</button>
-                <button id="0" onclick="digit(0)">0</button>
-                <button id="=" onclick="equals()">=</button>
-            </div>
+
         </div>
     </div>
 </body>

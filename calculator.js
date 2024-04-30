@@ -24,9 +24,15 @@ const digit = (num) => {
 // When decimal is clicked
 const decimal = () => {
     if (currentOperator == "")
-        lhs += ".";
+        if (!lhs.includes(".")) {
+            lhs += ".";
+            updateDisplay(lhs);
+        }
     else
+    if (!rhs.includes(".")) {
         rhs += ".";
+        updateDisplay(lhs);
+    }
 }
 
 // When an operator is clicked
