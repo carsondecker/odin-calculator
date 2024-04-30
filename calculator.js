@@ -7,17 +7,15 @@ let display = "";
 const previewDiv = document.querySelector("#preview");
 const displayDiv = document.querySelector("#display");
 
-// ---------------NEED TO PREVENT BIG NUMBERS IN ANSWER AND INPUTS----------------//
-
 // When a digit is clicked
 const digit = (num) => {
     if (preview.includes("="))
-        clr();    
-    if (currentOperator == "") {
+        clr();
+    if (currentOperator == "" && !(lhs.length >= 7)) {
         lhs += num;
         updateDisplay(lhs);
     }
-    else {
+    else if (currentOperator != "" && !(rhs.length >= 7)) {
         rhs += num;
         updateDisplay(rhs);
     }       
@@ -25,13 +23,15 @@ const digit = (num) => {
 
 // When decimal is clicked
 const decimal = () => {
+    if (preview.includes("="))
+        clr();
     if (currentOperator == "")
-        if (!lhs.includes(".")) {
+        if (!lhs.includes(".") && !(lhs.length >= 7)) {
             lhs += ".";
             updateDisplay(lhs);
         }
     else
-    if (!rhs.includes(".")) {
+    if (!rhs.includes(".") && !(rhs.length >= 7)) {
         rhs += ".";
         updateDisplay(lhs);
     }
@@ -39,10 +39,10 @@ const decimal = () => {
 
 // When an operator is clicked
 const operator = (op) => { 
-    if (lhs == "")
+    if (lhs == "" || lhs == ".")
         return;
     
-    if (currentOperator != "" && rhs != "" && !preview.includes("=")) {
+    if (currentOperator != "" && rhs != "" && rhs != "." && !preview.includes("=")) {
         operate();
     }
     currentOperator = op;
@@ -56,14 +56,17 @@ const operate = () => {
     switch(currentOperator) {
         case "+":
             lhs = parseFloat(lhs) + parseFloat(rhs);
+            lhs = limitLength(lhs);
             updateDisplay(lhs);
             break;
         case "-":
             lhs = parseFloat(lhs) - parseFloat(rhs);
+            lhs = limitLength(lhs);
             updateDisplay(lhs);
             break;
         case "*":
             lhs = parseFloat(lhs) * parseFloat(rhs);
+            lhs = limitLength(lhs);
             updateDisplay(lhs);
             break;
         case "/":
@@ -73,9 +76,14 @@ const operate = () => {
             }
             else {
                 lhs = parseFloat(lhs) / parseFloat(rhs);
+                lhs = limitLength(lhs);
                 updateDisplay(lhs);
             }
             break;
+    }
+    if (String(lhs).length > 8) {
+        window.alert('Your answer is too large! Please try again.');
+        clr();
     }
 }
 
@@ -120,4 +128,15 @@ const updateDisplay = (s) => {
 const updatePreview = (s) => {
     preview = s;
     previewDiv.textContent = preview;
+}
+
+// Round to limit the length of decimal answers
+const limitLength = (num) => {
+    if (!String(num).includes("."))
+        return num;
+    let beforeDec = String(num).indexOf(".");
+    if (String(num).length > 8) {
+        return num.toFixed(7-beforeDec);
+    }
+    return num;
 }
